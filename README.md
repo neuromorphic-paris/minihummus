@@ -1,7 +1,8 @@
 ![minihummus](minihummus.png)
-minihummus is a simple implementation of a spiking neural network (SNN) for educational purposes.
 
-This implementation is meant to be a starting point in understanding how SNNs work, so we try to avoid any complex optimization tricks for the sake of clarity. We recommend using other simulators for real experiments.
+Minihummus is an educational tool designed to be a very simple introduction to spiking neural networks. For this purpose, we try to keep the code as clear as possible by avoiding any optimization tricks.
+
+Single-layer feedforward networks for current-based leaky integrate and fire (LIF) neurons are supported at the moment.
 
 ## Install
 ```

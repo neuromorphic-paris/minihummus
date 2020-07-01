@@ -13,8 +13,8 @@ class Network:
         self.spikes = list()
     
     # In this simplified simulator we will only add support for one-layer networks.
-    def make_layer(self, input_neurons, output_neurons, tau_m, refractory_period, V_th, V_rest):
-        self.layer = layer.Layer(input_neurons, output_neurons, tau_m, refractory_period, V_th, V_rest)
+    def make_layer(self, input_neurons, output_neurons, tau_m, tau_s, refractory_period, V_th, V_rest, I_ext):
+        self.layer = layer.Layer(input_neurons, output_neurons, tau_m, tau_s, refractory_period, V_th, V_rest, I_ext)
     
     # Injecting spikes in the network. data can be:
     #    1- string - path to .npy file containing spikes with the format (t,neuron_idx)
@@ -46,9 +46,8 @@ class Network:
             # getting spikes between t-1 and t
             current_spikes = self.spikes[(self.spikes[:,0] <= t) & (self.spikes[:,0] > self.previous_t)]
             
-            # update neurons if we have spikes
-            if len(current_spikes) > 0:
-                self.layer.update(current_spikes, t, step)
+            # update neurons
+            self.layer.update(current_spikes, t, step)
             
             # save current timestamp
             self.previous_t = t
